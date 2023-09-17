@@ -30,7 +30,7 @@
           {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
         </variant-radios>
-          {% else %}
+          {% elsif option.name == "Color" %}
            <variant-selects
       id="variant-selects-{{ section.id }}"
       class="no-js-hidden"
