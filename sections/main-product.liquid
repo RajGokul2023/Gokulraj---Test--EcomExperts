@@ -628,23 +628,7 @@
       });
     });
   </script>
-Copy code
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Replace 'variant_id' with the ID of your desired first variant.
-    var firstVariantId = 'variant_id';
 
-    // Select the first variant by setting its ID in the product form.
-    document.querySelector('[name="id"]').value = firstVariantId;
-
-    // Trigger a change event to update the displayed variant details.
-    var event = new Event('change', {
-      bubbles: true,
-      cancelable: true,
-    });
-    document.querySelector('[name="id"]').dispatchEvent(event);
-  });
-</script>
   {%- liquid
     if product.selected_or_first_available_variant.featured_media
       assign seo_media = product.selected_or_first_available_variant.featured_media
