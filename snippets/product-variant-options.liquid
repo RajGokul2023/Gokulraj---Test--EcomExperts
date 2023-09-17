@@ -63,7 +63,6 @@
     >
     {% if option.name =='Color'%}
     <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
       {% elsif option.name == 'Size'%}
@@ -79,7 +78,8 @@
         {{- value -}}
       {%- endif %}
     </option>
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+     {% else %}
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
