@@ -14,17 +14,17 @@
     block: block
   %}
 {% endcomment %}
-<!-- {%- liquid
+{%- liquid
   assign variants_available_arr = product.variants | map: 'available'
   assign variants_option1_arr = product.variants | map: 'option1'
   assign variants_option2_arr = product.variants | map: 'option2'
   assign variants_option3_arr = product.variants | map: 'option3'
 
   assign product_form_id = 'product-form-' | append: section.id
--%} -->
-{% for variant in products.variants %}
+-%}
+
 {%- for value in option.values -%}
-  <!-- {%- liquid
+  {%- liquid
     assign option_disabled = true
 
     for option1_name in variants_option1_arr
@@ -43,7 +43,7 @@
           endif
       endcase
     endfor
-  -%} -->
+  -%}
 
   {%- if block.settings.picker_type == 'button' -%}
     <input
@@ -85,4 +85,3 @@
     </option>
   {%- endif -%}
 {%- endfor -%}
-{% endfor %}
