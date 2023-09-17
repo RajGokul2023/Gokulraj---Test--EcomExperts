@@ -421,7 +421,7 @@
               %}
 
             {%- when 'variant_picker' -%}
-              <!-- {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %} -->
+              {% comment %}{% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %} {% endcomment %}
             <div class="color-swatch-section">
   <label for="color">Color:</label>
   <select id="color" name="color">
