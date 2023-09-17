@@ -63,7 +63,7 @@
       {% endif %}
     >
       {% assign downcased_option = option | downcase %}
-  {% if downcased_option contains 'Color' %}
+  {% if downcased_option contains 'color' %}
   {% assign option_index = forloop.index0 %}
     {% assign values = "" %}
         <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
@@ -71,12 +71,10 @@
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
     {% endif %}
-    {% if downcased_option contains 'Color' %}
     <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
-    {% endif %}
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
