@@ -93,10 +93,10 @@
                         <img
                           src="{{ product.featured_image | image_url: width: 300 }}"
                           class="cart-item__image"
-                          alt="{{ product.image.alt | escape }}"
+                          alt="{{ product.featured_image.alt | escape }}"
                           loading="lazy"
                           width="150"
-                          height="{{ 150 | divided_by: product.image.aspect_ratio | ceil }}"
+                          height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
                         >
                       </div>
                     {% endif %}
