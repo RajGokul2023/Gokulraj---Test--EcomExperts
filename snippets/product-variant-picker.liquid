@@ -14,7 +14,7 @@
 
 
       {%- for option in product.options_with_values -%}
-        {% if option.name == "Color" %}
+      
       <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -30,7 +30,7 @@
           {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
         </variant-radios>
-          {% elsif option.name == "Size" %}
+      
            <variant-selects
       id="variant-selects-{{ section.id }}"
       class="no-js-hidden"
@@ -64,7 +64,7 @@
         {{ product.variants | json }}
       </script>
     </variant-selects>
-    {% endif %}
+
       {%- endfor -%}
       <script type="application/json">
         {{ product.variants | json }}
