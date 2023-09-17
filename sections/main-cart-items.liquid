@@ -83,6 +83,7 @@
                    <!-- {{ product.title }}
                   <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" loading="lazy"> -->
                       {% comment %} {% include 'cart-add-on' %} {% endcomment %}
+    
                    <tr class="cart-item" id="CartItem-{{ product.index | plus: 1 }}">
                   <td class="cart-item__media">
                     {% if product.image %}
@@ -90,7 +91,7 @@
                       <a href="{{ product.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
                       <div class="cart-item__image-container gradient global-media-settings">
                         <img
-                          src="{{ product.image | image_url: width: 300 }}"
+                          src="{{ product.featured_image | image_url: width: 300 }}"
                           class="cart-item__image"
                           alt="{{ product.image.alt | escape }}"
                           loading="lazy"
