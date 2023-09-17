@@ -511,7 +511,7 @@
 
 <script>  
   
-(function(document.querySelector) {   
+(function($) {   
     
     let cartItems = {{ cart.items | json }},
         qtyInTheCart = 0,        
@@ -545,9 +545,9 @@
       }
     };  
 
-    document.querySelector.ajax(params);
+    $.ajax(params);
 
-})(document.querySelector);
+})(jQuery);
   
 </script>
 
@@ -557,7 +557,7 @@
 
 <script>  
   
-(function(document.querySelector) {   
+(function($) {   
     
     let cartItems = {{ cart.items | json }},
         qtyInTheCart = 0,        
@@ -591,9 +591,9 @@
       }
     };  
 
-    document.querySelector.ajax(params);
+    $.ajax(params);
 
-})(document.querySelector);
+})(jQuery);
   
 </script>
 
