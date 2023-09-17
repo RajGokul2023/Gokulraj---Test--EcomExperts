@@ -80,7 +80,7 @@
                 {% if product.handle == "dark-winter-jacket" %}
                     <div class="gift-product">
                       {{ product.title }}
-                  <img src="{{ item.image | image_url: width: 200 }}" alt="{{ product.title }}" loading="lazy">
+                  <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" loading="lazy">
                     </div>
                   {% endif %}
                 {% endfor %}
