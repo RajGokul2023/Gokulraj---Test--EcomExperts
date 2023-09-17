@@ -47,7 +47,7 @@
     endfor
   -%}
 
-  {%- if option.name == "Color" -%}
+
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -66,18 +66,4 @@
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
 
-  {%- elsif option.name == "Size" -%}
-    <option
-      value="{{ value | escape }}"
-      {% if option.selected_value == value %}
-        selected="selected"
-      {% endif %}
-    >
-      {% if option_disabled -%}
-        {{- 'products.product.value_unavailable' | t: option_value: value -}}
-      {%- else -%}
-        {{- value -}}
-      {%- endif %}
-    </option>
-  {%- endif -%}
 {%- endfor -%}
