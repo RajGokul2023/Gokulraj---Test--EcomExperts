@@ -602,27 +602,6 @@
     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
   {%- endif -%}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Find the variant selector element by its ID.
-    var variantSelector = document.getElementById('variant-selector');
-
-    // Check if the variant selector exists on the page.
-    if (variantSelector) {
-      // Select the first option in the variant selector.
-      variantSelector.selectedIndex = 0;
-
-      // Trigger a change event to update the product's price and image.
-      if ('createEvent' in document) {
-        var event = document.createEvent('HTMLEvents');
-        event.initEvent('change', false, true);
-        variantSelector.dispatchEvent(event);
-      } else {
-        variantSelector.fireEvent('onchange');
-      }
-    }
-  });
-</script>
 
   {%- liquid
     if product.selected_or_first_available_variant.featured_media
