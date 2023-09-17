@@ -25,23 +25,7 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-              <input
-      type="radio"
-      id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-      name="{{ option.name }}"
-      value="{{ value | escape }}"
-      form="{{ product_form_id }}"
-      {% if option.selected_value == value %}
-        checked
-      {% endif %}
-      {% if option_disabled %}
-        class="disabled"
-      {% endif %}
-    >
-
-    <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
-    </label>
+          {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
