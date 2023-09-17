@@ -76,7 +76,7 @@
     endfor
   -%}
 
-  {%- if block.settings.picker_type == 'button' -%}
+ 
 
     <input
       type="radio"
@@ -96,7 +96,7 @@
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
 
-  {%- elsif block.settings.picker_type == 'dropdown' -%}
+
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
@@ -109,7 +109,7 @@
         {{- value -}}
       {%- endif %}
     </option>
-  {%- endif -%}
+
 {%- endfor -%}
 
 
