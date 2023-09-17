@@ -60,7 +60,7 @@
       {% endif %}
     >
     {% if option.name == "Color" or 'color'%}
-    <label style="background-image: url ('{{ variant.image | image_url: width: 50 }}'); background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+    <label {% if variant.image %}data-image="{{ variant.image | image_url: width: 500 }}"{% endif %}style="background-image: url ('{{ variant.image | image_url: width: 50 }}'); background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
