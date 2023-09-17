@@ -48,7 +48,7 @@
   -%}
 
   {%- if block.settings.picker_type == 'button' -%}
-
+{% if option.name == "Color" %}
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -79,7 +79,7 @@
         {{- value -}}
       {%- endif %}
     </option>
-
+{% endif %}
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
