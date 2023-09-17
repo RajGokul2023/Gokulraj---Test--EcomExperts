@@ -24,7 +24,7 @@
 -%}
 {% for option in products.options_with_values %}
 {%- for value in option.values -%}
-  {%- liquid
+  <!-- {%- liquid
     assign option_disabled = true
 
     for option1_name in variants_option1_arr
@@ -43,7 +43,7 @@
           endif
       endcase
     endfor
-  -%}
+  -%} -->
 
   {%- if block.settings.picker_type == 'button' -%}
     <input
