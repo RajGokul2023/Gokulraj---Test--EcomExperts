@@ -50,7 +50,6 @@
 
   {%- if block.settings.picker_type == 'button' -%}
     <input
-      style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;"
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
       name="{{ option.name }}"
