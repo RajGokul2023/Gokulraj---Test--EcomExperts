@@ -76,7 +76,7 @@
             </thead>
  
           {% for item in cart.items %}
-            {% if item.product.title == 'Handbag' and variant.id == "46851107160338"%}
+            {% if item.product.title == 'Handbag' and item.variant.id == "46851107160338"%}
               {% for product in collections.all.products %}
                 {% if product.handle == "dark-winter-jacket" %}
                     <div class="gift-product">
