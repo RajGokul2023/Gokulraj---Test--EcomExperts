@@ -74,8 +74,7 @@
                 </th>
               </tr>
             </thead>
-          {% for items in cart.items %}
-            console.log(items);
+          {% for item in cart.items %}
             {% if item.product.title == 'Handbag' %}
               {% for product in collections.all.products %}
                 {% if product.handle == "olive-green-jacket" %}
