@@ -1,3 +1,4 @@
+
 {% comment %}
   Renders product variant-picker
 
@@ -23,18 +24,16 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        {% if option.name == "Color" %}
         <fieldset class="js product-form__input">
-          <legend class="form__label" {% if option.name == 'Size' %}hidden{% endif %}>{{ option.name }}</legend>
+          <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
           {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
-          {% endif %}
       {%- endfor -%}
       <script type="application/json">
         {{ product.variants | json }}
       </script>
     </variant-radios>
-
+  
     <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
                     <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
@@ -61,7 +60,7 @@
                   <script type="application/json">
                     {{ product.variants | json }}
                   </script>
-                </variant-selects> 
+                </variant-selects>
 
   {%- else -%}
     <variant-selects
