@@ -76,7 +76,7 @@
             </thead>
  
           {% for item in cart.items %}
-            {% if product.variant.id == '46851107160338'  %}
+            {% if item.variant.id == '46851107160338'  %}
               {% for product in collections.all.products %}
                 {% if product.handle == "dark-winter-jacket" %}
                     <div class="gift-product">
