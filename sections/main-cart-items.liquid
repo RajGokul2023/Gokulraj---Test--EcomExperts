@@ -511,7 +511,7 @@
 
 <script>  
   
-(function($) {   
+(function(document.querySelector) {   
     
     let cartItems = {{ cart.items | json }},
         qtyInTheCart = 0,        
@@ -545,9 +545,9 @@
       }
     };  
 
-    $.ajax(params);
+    document.querySelector.ajax(params);
 
-})(jQuery);
+})(document.querySelector);
   
 </script>
 
