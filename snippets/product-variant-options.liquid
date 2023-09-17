@@ -72,6 +72,7 @@
     </label>
     {% endif %}
     <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
