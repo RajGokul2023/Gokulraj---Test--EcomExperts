@@ -426,7 +426,7 @@
   <label for="color">Color:</label>
   <select id="color" name="color">
     {% for variant in product.variants %}
-      {% if variant.option1 == 'Color' %}
+      {% if variant.option == 'Color' %}
         <option value="{{ variant.id }}">{{ variant.title }}</option>
       {% endif %}
     {% endfor %}
@@ -437,7 +437,7 @@
   <label for="size">Size:</label>
   <select id="size" name="size">
     {% for variant in product.variants %}
-      {% if variant.option1 == 'Size' %}
+      {% if variant.option == 'Size' %}
         <option value="{{ variant.id }}">{{ variant.title }}</option>
       {% endif %}
     {% endfor %}
