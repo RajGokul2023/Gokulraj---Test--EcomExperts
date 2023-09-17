@@ -79,8 +79,9 @@
               {% for product in collections.all.products %}
                 {% if product.handle == "dark-winter-jacket" %}
                     <div class="gift-product">
-                   {{ product.title }}
-                  <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" loading="lazy">
+                   <!-- {{ product.title }}
+                  <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" loading="lazy"> -->
+                      {% include 'cart-add-on' %}
                     </div>
                   {% endif %}
                 {% endfor %}
