@@ -112,6 +112,7 @@
         class="select__select"
         form="{{ product_form_id }}"
       >
+        
         {%- for variant in product.variants -%}
           <option
             {% if variant == product.selected_or_first_available_variant %}
