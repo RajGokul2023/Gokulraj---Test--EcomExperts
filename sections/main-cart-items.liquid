@@ -87,15 +87,6 @@
             {% endfor %}
             <tbody>
               {%- for item in cart.items -%}
-                            {% if item.product.title == 'Handbag' %}
-              {% for product in collection.all.products %}
-                {% if product.handle == "dark-winter-jacket" %}
-                    <div class="gift-product">
-                      {{ product.title }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
                 <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                   <td class="cart-item__media">
                     {% if item.image %}
