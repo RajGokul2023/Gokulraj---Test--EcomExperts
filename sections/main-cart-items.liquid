@@ -268,7 +268,7 @@
                               data-quantity-variant-id="{{ product.variant.id }}"
                               type="number"
                               name="updates[]"
-                              value="{{ product.quantity }}"
+                              value="1"
                               {% # theme-check-disable %}
                               data-cart-quantity="{{ cart | item_count_for_variant: product.variant.id }}"
                               min="{{ product.variant.quantity_rule.min }}"
