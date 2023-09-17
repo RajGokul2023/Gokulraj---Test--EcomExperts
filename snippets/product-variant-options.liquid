@@ -14,7 +14,6 @@
     block: block
   %}
 {% endcomment %}
-
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
   assign variants_option1_arr = product.variants | map: 'option1'
@@ -22,7 +21,6 @@
   assign variants_option3_arr = product.variants | map: 'option3'
 
   assign product_form_id = 'product-form-' | append: section.id
-   
 -%}
 
 {%- for value in option.values -%}
@@ -48,7 +46,6 @@
   -%}
 
   {%- if block.settings.picker_type == 'button' -%}
-
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -62,24 +59,17 @@
         class="disabled"
       {% endif %}
     >
-
-    <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+    {% if option.name == "Color" or 'color'%}
+    <label style="background-image: url('{{ value | append: '.png' | file_url  }}')" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
-
-      <option
-      value="{{ value | escape }}"
-      {% if option.selected_value == value %}
-        selected="selected"
+      {% else %}
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      {{ value -}}
+      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+    </label>
       {% endif %}
-    >
-      {% if option_disabled -%}
-        {{- 'products.product.value_unavailable' | t: option_value: value -}}
-      {%- else -%}
-        {{- value -}}
-      {%- endif %}
-    </option>
-
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
@@ -95,4 +85,3 @@
     </option>
   {%- endif -%}
 {%- endfor -%}
-
