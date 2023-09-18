@@ -49,7 +49,7 @@
                         >
                     <!-- <option value="Unselected" selected="selected">Unselected</option> -->
                           {%- for value in option.values -%}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                            <option value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
                               {{ value }}
                             </option>
                           {%- endfor -%}
