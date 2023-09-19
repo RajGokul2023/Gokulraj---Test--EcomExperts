@@ -155,22 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 document.addEventListener('DOMContentLoaded', function () {
-  var colorSelects = document.querySelectorAll('.Option-Type-Color');
-    colorSelects.forEach(function (colorSelect) {
-    colorSelect.addEventListener('change', function () {
-      var id = this.value;
-      var parentVariantPick = this.closest('.variant-pick');
-      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-Color input');
-
-      colorInputs.forEach(function (colorInput) {
-        if (colorInput.value === id) {
-          colorInput.click();
-        }
-      });
-    });
-  });
-});  
-document.addEventListener('DOMContentLoaded', function () {
   var sizeSelects = document.querySelectorAll('.option-type-is-Color input');
   sizeSelects.forEach(function (sizeSelect) {
     sizeSelect.addEventListener('click', function () {
@@ -180,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
           sizeInput.setAttribute("selected","selected");
-          console.log(sizeInput);
         }
       });
     });
