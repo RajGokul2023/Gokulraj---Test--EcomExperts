@@ -155,12 +155,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-$(document).ready(function(){
-$(".option-type-is-Color input").on('click',function(){
-var id = $(this).val();
-  console.log(id);
-$(this).parents(".variant-pick").find(".Option-Type-Color option[value=" + id + "]").trigger('click');
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.option-type-is-Color input');
 
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('click', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
+
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
+        }
+      });
+    });
+  });
 });
-});
+
 </script>
