@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
       colorInputs.forEach(function (colorInput) {
         if (colorInput.value === id) {
           colorInput.setAttribute("selected","selected");
+          else 
+          colorInput.removeAttribute("selected","selected");
         }
       });
     });
