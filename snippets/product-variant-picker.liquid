@@ -26,7 +26,7 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input option-type-is-{{ option.name }}">
           <legend class="form__label {% if option.name == "Size" %}hidfden{% endif %}">{{ option.name }}</legend>
-          <!-- {% render 'product-variant-options', product: product, option: option, block: block %} -->
+          {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %} {% endcomment %}
             <input
               type="radio"
               id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
