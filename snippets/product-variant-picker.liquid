@@ -169,14 +169,14 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  window.onload = function () {
-    const url = window.location;
-    const urlObj = new URL(url);
-    console.log(urlObj);
-      urlObj.search = '';
-    const result = urlObj.toString();
-      window.location.href=result;
-  };
+if (performance.navigation.type === 1) {
+  // Clear query parameters when the page is refreshed
+  const url = window.location;
+  const urlObj = new URL(url);
+  urlObj.search = '';
+  const result = urlObj.toString();
+  window.location.href = result;
+}
 });
 
 
