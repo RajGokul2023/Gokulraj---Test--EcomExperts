@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 $(document).ready(function(){
-$(".option-type-is-Color").on('click",function(){
+$(".option-type-is-Color input").on('click",function(){
 var id = $(this).val();
   console.log(id);
 $(this).parents(".variant-pick").find(".Option-Type-Color option[value=" + id + "]").trigger('click');
