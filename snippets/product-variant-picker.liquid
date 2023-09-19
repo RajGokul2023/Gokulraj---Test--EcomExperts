@@ -153,8 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-});
-document.addEventListener('DOMContentLoaded', function () {
   var colorSelects = document.querySelectorAll('.option-type-is-Color input');
   colorSelects.forEach(function (colorSelect) {
     colorSelect.addEventListener('click', function () {
@@ -172,5 +170,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+// document.addEventListener('DOMContentLoaded', function () {
+//   var colorSelects = document.querySelectorAll('.option-type-is-Color input');
+//   colorSelects.forEach(function (colorSelect) {
+//     colorSelect.addEventListener('click', function () {
+//       var id = this.value;
+//       var parentVariantPick = this.closest('.variant-pick');
+//       var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
+//       colorInputs.forEach(function (colorInput) {
+//         if (colorInput.value === id) {
+//           colorInput.setAttribute("selected", "selected");
+//         } else {
+//           colorInput.removeAttribute("selected");
+//         }
+
+//       });
+//     });
+//   });
+// });
+
 
 </script>
