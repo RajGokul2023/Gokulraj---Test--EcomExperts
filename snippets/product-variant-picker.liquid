@@ -9,9 +9,8 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+<div class="variant-pick">
 {%- unless product.has_only_default_variant -%}
-  {%- if block.settings.picker_type == 'button' -%}
-
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -23,8 +22,10 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
-          <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
+        <fieldset class="js product-form__input option-type-is-{{ option.name }}">
+          <legend class="form__label {% if option.name == "Size" %}hidfden{% endif %}">{{ option.name }}</legend>
+          {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %} {% endcomment %}
+          {%- for value in option.values -%}
             <input
               type="radio"
               id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -38,10 +39,17 @@
                 class="disabled"
               {% endif %}
             >
-        
-            <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-              <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
-            </label>
+          {% if option.name == "Color" %}
+          <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+          </label>
+          {% else %}
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            {{ value }}
+            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+          </label>
+          {% endif %}  
+          {% endfor %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
@@ -51,18 +59,18 @@
   
     <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
       {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
+        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidgden{% endif %}">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
             <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
+              class="select__select Option-Type-{{ option.name }}"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
                   {{ value }}
                 </option>
               {%- endfor -%}
@@ -77,43 +85,8 @@
       </script>
     </variant-selects>
 
-  {%- else -%}
-    <variant-selects
-      id="variant-selects-{{ section.id }}"
-      class="no-js-hidden"
-      data-section="{{ section.id }}"
-      data-url="{{ product.url }}"
-      {% if update_url == false %}
-        data-update-url="false"
-      {% endif %}
-      {{ block.shopify_attributes }}
-    >
-      {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
-          <div class="select">
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
-              name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
-              {% render 'product-variant-options', product: product, option: option, block: block %}
-            </select>
-            {% render 'icon-caret' %}
-          </div>
-        </div>
-      {%- endfor -%}
-
-      <script type="application/json">
-        {{ product.variants | json }}
-      </script>
-    </variant-selects>
-  {%- endif -%}
 {%- endunless -%}
-
+</div>
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
   <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
     <label class="form__label" for="Variants-{{ section.id }}">
@@ -126,6 +99,7 @@
         class="select__select"
         form="{{ product_form_id }}"
       >
+        
         {%- for variant in product.variants -%}
           <option
             {% if variant == product.selected_or_first_available_variant %}
@@ -166,3 +140,24 @@
     </div>
   </div>
 </noscript>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.Option-Type-Size');
+
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
+
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
+        }
+      });
+    });
+  });
+});
+</script>
