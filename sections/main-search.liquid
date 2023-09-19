@@ -224,7 +224,7 @@
                     {% endif %}>
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                      {% if result.object_type == 'product' and result.product.tags contains 'your-tag' %}
+                      {% unless result.object_type == 'product' and result.product.tags contains 'Giftproduct' %}
                         {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
                         {% render 'card-product',
                           card_product: item,
@@ -235,7 +235,7 @@
                           show_rating: section.settings.show_rating,
                           lazy_load: lazy_load
                         %}
-                      {% endif %}
+                      {% endunless %}
                       {%- when 'article' -%}
                         {% render 'article-card',
                           article: item,
