@@ -212,7 +212,7 @@
                         </dl>
                       {%- else -%}
                         <span class="price price--end">
-                          {{ 0.01 | money }}
+                          {{ product.original_line_price | money }}
                         </span>
                       {%- endif -%}
 
@@ -440,7 +440,7 @@
                         </dl>
                       {%- else -%}
                         <span class="price price--end">
-                           {{ product.final_line_price | money }}
+                          {{ 0.05 | money }}
                         </span>
                       {%- endif -%}
 
