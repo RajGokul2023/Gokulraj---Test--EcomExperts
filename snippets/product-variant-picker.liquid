@@ -172,5 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
   const url = window.location;
-  console.log(url);
+  const urlObj = newURL(url);
+  urlObj.search = '';
+  const result = urlObj.toString();
+  window.location.href=result;
 </script>
