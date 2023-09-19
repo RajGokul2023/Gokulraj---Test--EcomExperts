@@ -54,7 +54,7 @@
   
     <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
       {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidfden{% endif %}">
+        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hiddsen{% endif %}">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
-          this.setAttribute("selected", "selected");
+          sizeInput.click();
         }
       });
     });
