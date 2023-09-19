@@ -169,13 +169,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  function(){
+  function reload(){
     const url = window.location;
     const urlObj = new URL(url);
       urlObj.search = '';
     const result = urlObj.toString();
       window.location.href=result;
   }
+  reload();
 });
-
 </script>
