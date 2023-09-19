@@ -169,14 +169,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-if (performance.navigation.type === 1) {
-  // Clear query parameters when the page is refreshed
-  const url = window.location;
-  const urlObj = new URL(url);
-  urlObj.search = '';
-  const result = urlObj.toString();
-  window.location.href = result;
-}
+  if (performance.navigation.type === 1) {
+    const url = window.location;
+    const urlObj = new URL(url);
+    urlObj.search = '';
+    const result = urlObj.toString();
+    window.location.href = result;
+  }
 });
 
 
