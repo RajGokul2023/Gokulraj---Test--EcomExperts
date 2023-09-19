@@ -49,8 +49,7 @@
             {{ value }}
             <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
           </label>
-          {% endif %}
-          
+          {% endif %}       
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
@@ -66,13 +65,12 @@
           </label>
           <div class="select">
             <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
+              class="select__select Option-Type-{{ option.name }}"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
             >
-        <!-- <option value="Unselected" selected="selected">Unselected</option> -->
               {%- for value in option.values -%}
-                <option value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
                   {{ value }}
                 </option>
               {%- endfor -%}
@@ -178,3 +176,23 @@
   </div>
 </noscript>
 
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.Option-Type-Size');
+
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
+
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
+        }
+      });
+    });
+  });
+});
+</script>
