@@ -163,7 +163,7 @@ console.log(sizeSelects);
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
       var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-
+console.log(sizeInputs);
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
           sizeInput.click();
