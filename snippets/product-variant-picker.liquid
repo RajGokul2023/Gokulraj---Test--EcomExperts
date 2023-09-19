@@ -155,21 +155,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-document.addEventListener('DOMContentLoaded', function () {
-  var colorSelects = document.querySelectorAll('.option-type-is-Color');
+$(document).ready(function(){
+$(".option-type-is-Color").on('change",function(){
+var id = $(this).val();
+$(this).parents(".variant-pick").find(".Option-Type-Color option[value=" + id + "]").trigger('click');
 
-  colorSelects.forEach(function (colorSelect) {
-    colorSelect.addEventListener('change', function () {
-      var id = this.value;
-      var parentVariantPick = this.closest('.variant-pick');
-      var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-
-    colorInputs.forEach(function (colorInput) {
-        if (colorInput.value === id) {
-          colorInput.click();
-        }
-      });
-    });
-  });
+});
 });
 </script>
