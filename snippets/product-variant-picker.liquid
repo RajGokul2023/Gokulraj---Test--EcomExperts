@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function reload(){
     const url = window.location;
     const urlObj = new URL(url);
+    console.log(urlObj);
       urlObj.search = '';
     const result = urlObj.toString();
       window.location.href=result;
