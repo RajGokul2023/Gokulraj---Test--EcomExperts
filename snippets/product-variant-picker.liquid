@@ -163,21 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
       colorInputs.forEach(function (colorInput) {
         if (colorInput.value === id) {
-         // colorInput.setAttribute("selected","selected");
-            var selectElements = document.querySelectorAll('.option-type-is-Color input');
-
-  selectElements.forEach(function (selectElement) {
-    selectElement.addEventListener('click', function () {
-      var selectedOption = this.querySelector('option:checked');
-      selectedOption.removeAttribute('selected');
-    });
-
-    selectElement.addEventListener('change', function () {
-      var selectedOption = this.querySelector('option:checked');
-      selectedOption.setAttribute('selected', 'selected');
-    });
-  });
-
+          colorInput.setAttribute("selected","selected");
         }
       });
     });
