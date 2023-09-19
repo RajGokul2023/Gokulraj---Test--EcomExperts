@@ -157,16 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 document.addEventListener('DOMContentLoaded', function () {
   var sizeSelects = document.querySelectorAll('.option-type-is-Color input');
-console.log(sizeSelects);
   sizeSelects.forEach(function (sizeSelect) {
     sizeSelect.addEventListener('click', function () {
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
       var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-console.log(sizeInputs);
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
-          sizeInput.click();
+          sizeInput.change();
         }
       });
     });
