@@ -140,7 +140,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   var sizeSelects = document.querySelectorAll('.Option-Type-Size');
-
+  var colorSelects = document.querySelectorAll('.Option-Type-Color');
   sizeSelects.forEach(function (sizeSelect) {
     sizeSelect.addEventListener('change', function () {
       var id = this.value;
@@ -150,6 +150,19 @@ document.addEventListener('DOMContentLoaded', function () {
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
           sizeInput.click();
+        }
+      });
+    });
+  });
+    colorSelects.forEach(function (colorSelect) {
+    colorSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-Color input');
+
+      colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.click();
         }
       });
     });
