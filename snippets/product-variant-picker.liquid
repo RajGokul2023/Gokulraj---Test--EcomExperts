@@ -155,4 +155,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.Option-Type-Color');
+
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Cize input');
+
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
+        }
+      });
+    });
+  });
+});
 </script>
