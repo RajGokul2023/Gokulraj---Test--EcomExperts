@@ -656,7 +656,9 @@
     }
   </script>
 </section>
-
+{%- if product.tags contains 'Giftproduct' -%}
+  <script>window.location.href="/"</script>
+{%- endif %}
 {% schema %}
 {
   "name": "t:sections.main-product.name",
