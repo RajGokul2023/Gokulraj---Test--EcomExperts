@@ -155,15 +155,15 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 document.addEventListener('DOMContentLoaded', function () {
-  var sizeSelects = document.querySelectorAll('.option-type-is-Color input');
-  sizeSelects.forEach(function (sizeSelect) {
-    sizeSelect.addEventListener('click', function () {
+  var colorSelects = document.querySelectorAll('.option-type-is-Color input');
+  colorSelects.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function () {
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
-      var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-      sizeInputs.forEach(function (sizeInput) {
-        if (sizeInput.value === id) {
-          sizeInput.setAttribute("selected","selected");
+      var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
+      colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.setAttribute("selected","selected");
         }
       });
     });
