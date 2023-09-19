@@ -2,7 +2,7 @@
   {%- if block.settings.show_variants == true -%}
     {%- for option in product.options_with_values -%}
       {% if product.options.size > 1 -%}
-        {% if option.name == 'Color' %}
+
           <variant-radios
             class="no-js-hidden"
             data-section="{{ section.id }}"
@@ -71,7 +71,7 @@
             </script>
           </variant-selects>
         {%- endif -%}
-      {% endif %}
+
     {% endfor %}
   {% endif %}
 {%- endunless -%}
