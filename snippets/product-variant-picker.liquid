@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
-          sizeInput.change();
+          this..setAttribute("selected", "selected");
         }
       });
     });
