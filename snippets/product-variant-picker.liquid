@@ -156,17 +156,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 document.addEventListener('DOMContentLoaded', function () {
-  var sizeSelects = document.querySelectorAll('.Option-Type-Color');
+  var colorSelects = document.querySelectorAll('.Option-Type-Color');
 
-  sizeSelects.forEach(function (sizeSelect) {
-    sizeSelect.addEventListener('change', function () {
+  colorSelects.forEach(function (sizeSelect) {
+    colorSelect.addEventListener('change', function () {
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
-      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Cize input');
+      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
 
-      sizeInputs.forEach(function (sizeInput) {
-        if (sizeInput.value === id) {
-          sizeInput.click();
+    colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.click();
         }
       });
     });
