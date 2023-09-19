@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function(){
 $(".option-type-is-Color").on('change",function(){
 var id = $(this).val();
+  console.log(id);
 $(this).parents(".variant-pick").find(".Option-Type-Color option[value=" + id + "]").trigger('click');
 
 });
