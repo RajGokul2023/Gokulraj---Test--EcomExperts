@@ -155,16 +155,6 @@
               "
             >
               {%- for product in collection.products -%}
-                {%- assign hideproduct = product -%}
-                {%- if hideproduct.object_type == 'product' -%}
-                  {%- if hideproduct.tags contains 'Giftproduct' -%}
-                    {%- continue -%}
-                  {%- endif -%}
-                {%- endif -%}
-                {% assign lazy_load = false %}
-                {%- if forloop.index > 2 -%}
-                  {%- assign lazy_load = true -%}
-                {%- endif -%}
                 <li
                   class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" id="{{ product.title | replace: " ", "-" }}"
                   {% if settings.animations_reveal_on_scroll %}
@@ -183,7 +173,17 @@
                     show_quick_add: section.settings.enable_quick_add,
                     section_id: section.id
                   %}
-                </li>
+                </li>                
+                {%- assign hideproduct = product -%}
+                {%- if hideproduct.object_type == 'product' -%}
+                  {%- if hideproduct.tags contains 'Giftproduct' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                {%- endif -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
+                {%- endif -%}
               {%- endfor -%}
             </ul>
 
