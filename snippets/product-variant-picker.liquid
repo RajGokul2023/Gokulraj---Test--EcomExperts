@@ -140,7 +140,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   var sizeSelects = document.querySelectorAll('.Option-Type-Size');
-  var colorSelects = document.querySelectorAll('.Option-Type-Color');
   sizeSelects.forEach(function (sizeSelect) {
     sizeSelect.addEventListener('change', function () {
       var id = this.value;
@@ -154,6 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  var colorSelects = document.querySelectorAll('.Option-Type-Color');
     colorSelects.forEach(function (colorSelect) {
     colorSelect.addEventListener('change', function () {
       var id = this.value;
@@ -167,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-});
+});  
 document.addEventListener('DOMContentLoaded', function () {
   var sizeSelects = document.querySelectorAll('.option-type-is-Color input');
   sizeSelects.forEach(function (sizeSelect) {
