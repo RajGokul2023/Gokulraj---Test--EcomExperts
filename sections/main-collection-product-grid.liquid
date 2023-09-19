@@ -155,7 +155,12 @@
               "
             >
               {%- for product in collection.products -%}
-              {% unless product.tags contains 'Giftproduct' %}
+                {%- assign hideproduct = product -%}
+                {%- if hideproduct.object_type == 'product' -%}
+                  {%- if hideproduct.tags contains 'Giftproduct' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                {%- endif -%}
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
@@ -179,7 +184,6 @@
                     section_id: section.id
                   %}
                 </li>
-                {% endunless %}
               {%- endfor -%}
             </ul>
 
