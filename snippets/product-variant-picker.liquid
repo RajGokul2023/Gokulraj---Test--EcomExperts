@@ -65,9 +65,14 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
+                <!-- <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
                   {{ value }}
-                </option>
+                </option> -->
+                {% if forloop.first %} {# Check if it's the first option #}
+                  <option value="{{ option.first_value }}" selected="selected">{{ option.first_value }}</option>
+                {% else %}
+                  <option value="{{ option.first_value }}">{{ option.first_value }}</option>
+                {% endif %}
               {%- endfor -%}
             </select>
             {% render 'icon-caret' %}
