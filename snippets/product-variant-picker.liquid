@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
     colorSelect.addEventListener('change', function () {
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
-      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
+      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-Color input');
 
     colorInputs.forEach(function (colorInput) {
         if (colorInput.value === id) {
