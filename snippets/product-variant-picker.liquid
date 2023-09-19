@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+});
   function reload(){
     const url = window.location;
     const urlObj = new URL(url);
@@ -176,6 +177,4 @@ document.addEventListener('DOMContentLoaded', function () {
     const result = urlObj.toString();
       window.location.href=result;
   }
-  reload();
-});
 </script>
