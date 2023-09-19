@@ -24,9 +24,33 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
+        <fieldset class="js product-form__input option-type-is-{{ option.name }}">
           <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+          <!-- {% render 'product-variant-options', product: product, option: option, block: block %} -->
+            <input
+              type="radio"
+              id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+              name="{{ option.name }}"
+              value="{{ value | escape }}"
+              form="{{ product_form_id }}"
+              {% if option.selected_value == value %}
+                checked
+              {% endif %}
+              {% if option_disabled %}
+                class="disabled"
+              {% endif %}
+            >
+          {% if option.name == "Color" %}
+          <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+          </label>
+          {% else %}
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            {{ value }}
+            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+          </label>
+          {% endif %}
+          
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
