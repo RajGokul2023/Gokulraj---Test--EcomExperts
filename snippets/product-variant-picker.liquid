@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
   colorSwatches.forEach(function (colorSelect) {
     colorSelect.addEventListener('click', function(){
-    var selectedSize = document.querySelector(".Option-Type-Size");
+    var selectedSize = document.querySelector(".Option-Type-Size option");
      var addToCartButton = document.querySelector('.product-form__submit');
       console.log(selectedSize);
       if(selectedSize.value == "Unselected"){
