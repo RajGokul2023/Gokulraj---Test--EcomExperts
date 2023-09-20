@@ -667,24 +667,20 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-    var colorSelect = document.querySelector('.option-type-Color input'); // Replace with the actual ID of your color select box
+    var colorSelect = document.querySelector('.Option-Type-Color'); // Replace with the actual ID of your color select box
     var sizeSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your size select box
     var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
 
-    // Function to check the specified condition (e.g., size option value)
-    function shouldDisableAddToCartButton() {
-      var selectedColor = colorSelect.value;
+    // Function to check if the specific size option is picked
+    function isSizeOptionPicked() {
       var selectedSize = sizeSelect.value;
-
-      // Add your condition here, for example:
-      // If the selected size is 'unavailable', disable the button
+      // Replace 'option-to-disable' with the value of the size option you want to disable the button for
       return selectedSize === 'Unselected';
     }
 
     // Function to update the "Add to Cart" button state
     function updateAddToCartButtonState() {
-      console.log("alert");
-      if (shouldDisableAddToCartButton()) {
+      if (isSizeOptionPicked()) {
         addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
       } else {
         addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
@@ -692,8 +688,16 @@
     }
 
     // Add event listeners to both color and size select boxes
-    colorSelect.addEventListener('click', updateAddToCartButtonState);
-    sizeSelect.addEventListener('change', updateAddToCartButtonState);
+    colorSelect.addEventListener('change', updateAddToCartButtonState);
+    sizeSelect.addEventListener('change', function () {
+      updateAddToCartButtonState();
+      // Prevent the color select box from changing the button state
+      if (isSizeOptionPicked()) {
+        colorSelect.setAttribute('disabled', 'disabled');
+      } else {
+        colorSelect.removeAttribute('disabled');
+      }
+    });
 
     // Initial state on page load
     updateAddToCartButtonState();
