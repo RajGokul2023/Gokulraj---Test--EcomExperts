@@ -667,42 +667,9 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-    // var colorSelect = document.querySelector('.option-type-is-Color input'); // Replace with the actual ID of your color select box
-    // var sizeSelect = document.querySelector('.Option-Type-Size option'); // Replace with the actual ID of your size select box
-    // var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
 
-    // // Function to check if the specific size option is picked
-    // function isSizeOptionPicked() {
-    //   var selectedSize = sizeSelect.value;
-    //   console.log(selectedSize);
-    //   // Replace 'option-to-disable' with the value of the size option you want to disable the button for
-    //   return selectedSize === 'Unselected';
-    // }
-
-    // // Function to update the "Add to Cart" button state
-    // function updateAddToCartButtonState() {
-    //   console.log("aLERT")
-    //   if (isSizeOptionPicked()) {
-    //     addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
-    //   } else {
-    //     addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
-    //   }
-    // }
-
-    // // // Add event listeners to both color and size select boxes
-    // colorSelect.addEventListener('click', updateAddToCartButtonState);
-    // sizeSelect.addEventListener('click', function () {
-    //   updateAddToCartButtonState();
-    // //  // Prevent the color select box from changing the button state
-    //   if (isSizeOptionPicked()) {
-    //     colorSelect.setAttribute('disabled', 'disabled');
-    //   } else {
-    //     colorSelect.removeAttribute('disabled');
-    //   }
-    // });
-
-    // // Initial state on page load
-    // updateAddToCartButtonState();
+    var selectedSize = document.querySelector(".Option-Type-Size");
+    console.log(selectedSize);
   });
 
 
