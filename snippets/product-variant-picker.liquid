@@ -175,16 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (firstOption) {
     firstOption.selected = true;
   }
-  var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
-  // var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
-  
- var addToCartButton = this.closest('.product-form__submit');
-  // Check the stock status of the first variant option on page load
-  var firstOption = variantSelect.querySelector('#template--20987302936850__main--0');
-  if (firstOption && firstOption.value === 'out-of-stock-value') { // Replace 'out-of-stock-value' with the actual value that indicates an out-of-stock variant
-    addToCartButton.setAttribute('disabled', 'disabled');
 
-  }
   if (performance.navigation.type === 1) {
     const url = window.location;
     const urlObj = new URL(url);
