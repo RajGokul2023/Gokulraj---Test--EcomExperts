@@ -667,7 +667,7 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-        var colorSelect = document.querySelector('.Option-Type-Color'); // Replace with the actual ID of your color select box
+    var colorSelect = document.querySelector('.Option-Type-Color'); // Replace with the actual ID of your color select box
     var sizeSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your size select box
     var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
 
@@ -696,33 +696,6 @@
 
     // Initial state on page load
     updateAddToCartButtonState();
-
-    
-    var colorSelect = document.querySelector('.Option-Type-Color'); // Replace with the actual ID of your color select box
-    var sizeSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your size select box
-    var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
-
-    // Function to check if the size is unselected
-    function isSizeUnselected() {
-      return sizeSelect.value === '';
-    }
-
-    // Function to update the "Add to Cart" button state
-    function updateAddToCartButtonState() {
-      if (isSizeUnselected()) {
-        addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
-      } else {
-        addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
-      }
-    }
-
-    // Add event listeners to both color and size select boxes
-    colorSelect.addEventListener('change', updateAddToCartButtonState);
-    sizeSelect.addEventListener('change', updateAddToCartButtonState);
-
-    // Initial state on page load
-    updateAddToCartButtonState();
-  });
   });
 </script>
 {% schema %}
