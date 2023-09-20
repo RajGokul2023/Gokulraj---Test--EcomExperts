@@ -685,6 +685,8 @@
   colorSwatches.forEach(function (colorSelect) {
     colorSelect.addEventListener('click', function () {
       checkSizeAndDisableButton(); // Check the size and disable the button
+      var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+      console.log(addToCartButton);
       addToCartButton.setAttribute("disabled","disabled");
     });
   });
