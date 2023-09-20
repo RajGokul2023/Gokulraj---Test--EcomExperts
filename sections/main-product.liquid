@@ -687,7 +687,7 @@ function checkSizeAndDisableButton() {
 // Event listener for color swatch clicks
 var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
 colorSwatches.forEach(function (colorSelect) {
-  colorSelect.addEventListener('click', function () {
+  colorSelect.addEventListener('change', function () {
     if (singleClick === null) {
       // If there was no previous click, record the timestamp
       singleClick = new Date().getTime();
