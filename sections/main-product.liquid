@@ -669,7 +669,9 @@
     }
 
     var selectedSize = document.querySelector(".Option-Type-Size");
-    console.log(selectedSize);
+    if(selectedSize.value == "Unselected"){
+      addToCartButton.setAttribute('disabled', 'disabled');
+    }
   });
 
 
