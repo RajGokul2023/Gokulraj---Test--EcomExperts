@@ -26,7 +26,8 @@
         <fieldset class="js product-form__input">
           <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
           {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %}{% endcomment %}
-                    <input
+          {%- for value in option.values -%}
+            <input
               type="radio"
               id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
               name="{{ option.name }}"
@@ -43,6 +44,8 @@
           <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
             <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
           </label>
+ 
+          {% endfor %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
