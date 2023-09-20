@@ -669,9 +669,6 @@
     // }
    // Function to check the selected size and disable the "Add to Cart" button if necessary
 // Function to check the selected size and disable the "Add to Cart" button if necessary
-var singleClick = null; // Track single clicks
-var doubleClickTimeout = 300; // Adjust the timeout duration as needed
-
 function checkSizeAndDisableButton() {
   var selectedSize = document.querySelector(".Option-Type-Size option");
   var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
@@ -688,22 +685,8 @@ function checkSizeAndDisableButton() {
 var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
 colorSwatches.forEach(function (colorSelect) {
   colorSelect.addEventListener('change', function () {
-    if (singleClick === null) {
-      // If there was no previous click, record the timestamp
-      singleClick = new Date().getTime();
-
-      // Set a timeout to clear the singleClick if a double-click doesn't occur
-      setTimeout(function () {
-        singleClick = null;
-        checkSizeAndDisableButton(); // Handle single click behavior here
-        addToCartButton.setAttribute('disabled', 'disabled');
-      }, doubleClickTimeout); // Adjust the timeout duration as needed
-    } else {
-      // If there was a previous click, treat it as a double-click
-      singleClick = null;
-      checkSizeAndDisableButton(); // Handle double-click behavior here
-      addToCartButton.setAttribute('disabled', 'disabled');
-    }
+    checkSizeAndDisableButton(); // Check the size and disable/enable the button
+    addToCartButton.setAttribute('disabled', 'disabled');
   });
 });
 
@@ -715,7 +698,6 @@ sizeSelect.addEventListener('change', function () {
 
 // Initial state on page load
 checkSizeAndDisableButton();
-
 
   });
 
