@@ -667,7 +667,20 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-
+  var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
+  colorSwatches.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function(){
+    var selectedSize = document.querySelector(".Option-Type-Size option");
+     var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+      var selectSize = selectedSize.value;
+      console.log(selectSize);
+      if(selectSize == "Unselected"){
+        
+        addToCartButton.setAttribute('disabled', 'disabled');
+        console.log(addToCartButton);
+      }
+    });
+  });
    
   });
 
