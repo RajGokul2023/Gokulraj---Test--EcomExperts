@@ -695,13 +695,13 @@ colorSwatches.forEach(function (colorSelect) {
       setTimeout(function () {
         singleClick = null;
         checkSizeAndDisableButton(); // Handle single click behavior here
-        addToCartButton.setAttribute('disabled', 'disabled');
+
       }, doubleClickTimeout); // Adjust the timeout duration as needed
     } else {
       // If there was a previous click, treat it as a double-click
       singleClick = null;
       checkSizeAndDisableButton(); // Handle double-click behavior here
-      addToCartButton.setAttribute('disabled', 'disabled');
+
     }
   });
 });
