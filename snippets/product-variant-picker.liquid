@@ -162,19 +162,26 @@ document.addEventListener('DOMContentLoaded', function () {
         if (colorInput.value === id) {
           colorInput.setAttribute("selected", "selected");
         } else {
-          colorInput.removeAttribute("selected");
+          // colorInput.removeAttribute("selected");
         }
 
       });
     });
   });
- var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
+  var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
 
   // Set the first variant option as selected on page load
   var firstOption = variantSelect.querySelector('.Option-Type-Size #template--20987302936850__main--0');
-  console.log(firstOption);
   if (firstOption) {
-    firstOption.setAttribute("selected","selected");
+    firstOption.selected = true;
   }
+
+//   if (performance.navigation.type === 1) {
+//     const url = window.location;
+//     const urlObj = new URL(url);
+//     urlObj.search = '';
+//     const result = urlObj.toString();
+//     window.location.href = result;
+//   }
 });
 </script>
