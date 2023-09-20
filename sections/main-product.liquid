@@ -661,18 +661,13 @@
 {%- endif %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var addToCartButton = document.querySelector('.add-to-cart-button'); // Replace with the actual class or ID of your "Add to Cart" button
-    var buyNowButton = document.querySelector('.buy-now-button'); // Replace with the actual class or ID of your "Buy Now" button
+    var addToCartButton = document.querySelector('.product-form__submit');
 
     // Disable the "Add to Cart" button
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
 
-    // Disable the "Buy Now" button
-    if (buyNowButton) {
-      buyNowButton.setAttribute('disabled', 'disabled');
-    }
   });
 </script>
 {% schema %}
