@@ -9,9 +9,8 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-{%- unless product.has_only_default_variant -%}
-  {%- if block.settings.picker_type == 'button' -%}
-
+<div class="variant-pick">
+  {%- unless product.has_only_default_variant -%}
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -23,9 +22,9 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
+        <fieldset class="js product-form__input option-type-is-{{ option.name }}">
           <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
-          {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %}{% endcomment %}
+          {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %} {% endcomment %}
           {%- for value in option.values -%}
             <input
               type="radio"
@@ -54,57 +53,22 @@
     </variant-radios>
   
     <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
-                  {%- for option in product.options_with_values -%}
-                    <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
-                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-                        {{ option.name }}
-                      </label>
-                      <div class="select">
-                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                          class="select__select"
-                          name="options[{{ option.name | escape }}]"
-                          form="{{ product_form_id }}"
-                        >
-                          {%- for value in option.values -%}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
-                              {{ value }}
-                            </option>
-                          {%- endfor -%}
-                        </select>
-                        {% render 'icon-caret' %}
-                      </div>
-                    </div>
-                  {%- endfor -%}
-
-                  <script type="application/json">
-                    {{ product.variants | json }}
-                  </script>
-                </variant-selects>
-
-  {%- else -%}
-    <variant-selects
-      id="variant-selects-{{ section.id }}"
-      class="no-js-hidden"
-      data-section="{{ section.id }}"
-      data-url="{{ product.url }}"
-      {% if update_url == false %}
-        data-update-url="false"
-      {% endif %}
-      {{ block.shopify_attributes }}
-    >
       {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown">
+        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
+            <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select Option-Type-{{ option.name }}"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
             >
-              {% render 'product-variant-options', product: product, option: option, block: block %}
+              {%- for value in option.values -%}
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
+                  {{ value }}
+                </option>
+              {%- endfor -%}
             </select>
             {% render 'icon-caret' %}
           </div>
@@ -115,9 +79,9 @@
         {{ product.variants | json }}
       </script>
     </variant-selects>
-  {%- endif -%}
-{%- endunless -%}
 
+{%- endunless -%}
+</div>
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
   <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
     <label class="form__label" for="Variants-{{ section.id }}">
@@ -130,6 +94,7 @@
         class="select__select"
         form="{{ product_form_id }}"
       >
+        
         {%- for variant in product.variants -%}
           <option
             {% if variant == product.selected_or_first_available_variant %}
@@ -170,3 +135,45 @@
     </div>
   </div>
 </noscript>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.Option-Type-Size');
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
+
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
+        }
+      });
+    });
+  });
+  var colorSelects = document.querySelectorAll('.option-type-is-Color input');
+  colorSelects.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
+      colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.setAttribute("selected", "selected");
+        } else {
+          colorInput.removeAttribute("selected");
+        }
+
+      });
+    });
+  });
+  if (performance.navigation.type === 1) {
+    const url = window.location;
+    const urlObj = new URL(url);
+    urlObj.search = '';
+    const result = urlObj.toString();
+    window.location.href = result;
+  }
+});
+</script>
