@@ -669,13 +669,14 @@
     // }
    // Function to check the selected size and disable the "Add to Cart" button if necessary
 // Function to check the selected size and disable the "Add to Cart" button if necessary
-function checkSizeAndDisableButton() {
+function checkSizeAndDisableButton(e) {
   var selectedSize = document.querySelector(".Option-Type-Size option");
   var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
   var selectSize = selectedSize.value;
 
   if (selectSize === "Unselected") {
     addToCartButton.setAttribute('disabled', 'disabled');
+    e.preventDefault();
   } else {
     addToCartButton.removeAttribute('disabled');
   }
@@ -686,7 +687,6 @@ var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
 colorSwatches.forEach(function (colorSelect) {
   colorSelect.addEventListener('click', function (e) {
     checkSizeAndDisableButton(); // Check the size and disable the button
-    e.preventDefault();
   });
 });
 
@@ -694,7 +694,6 @@ colorSwatches.forEach(function (colorSelect) {
 var sizeSelect = document.querySelector(".Option-Type-Size");
 sizeSelect.addEventListener('change', function (e) {
   checkSizeAndDisableButton(); // Check the size and disable the button
-  // e.preventDefault();
 });
 
 // Prevent the form from submitting and the page from reloading
