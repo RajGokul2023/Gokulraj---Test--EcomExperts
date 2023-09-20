@@ -667,6 +667,8 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
+   
+  });
   var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
   colorSwatches.forEach(function (colorSelect) {
     colorSelect.addEventListener('click', function(){
@@ -681,9 +683,6 @@
       }
     });
   });
-   
-  });
-
 
 </script>
 {% schema %}
