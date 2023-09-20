@@ -667,43 +667,81 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-    var colorSelect = document.querySelector('.option-type-is-Color input'); // Replace with the actual ID of your color select box
-    var sizeSelect = document.querySelector('.Option-Type-Size option'); // Replace with the actual ID of your size select box
-    var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
+    // var colorSelect = document.querySelector('.option-type-is-Color input'); // Replace with the actual ID of your color select box
+    // var sizeSelect = document.querySelector('.Option-Type-Size option'); // Replace with the actual ID of your size select box
+    // var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
 
-    // Function to check if the specific size option is picked
-    function isSizeOptionPicked() {
-      var selectedSize = sizeSelect.value;
-      console.log(selectedSize);
-      // Replace 'option-to-disable' with the value of the size option you want to disable the button for
-      return selectedSize === 'Unselected';
-    }
+    // // Function to check if the specific size option is picked
+    // function isSizeOptionPicked() {
+    //   var selectedSize = sizeSelect.value;
+    //   console.log(selectedSize);
+    //   // Replace 'option-to-disable' with the value of the size option you want to disable the button for
+    //   return selectedSize === 'Unselected';
+    // }
 
-    // Function to update the "Add to Cart" button state
-    function updateAddToCartButtonState() {
-      console.log("aLERT")
-      if (isSizeOptionPicked()) {
-        addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
-      } else {
-        addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
-      }
-    }
+    // // Function to update the "Add to Cart" button state
+    // function updateAddToCartButtonState() {
+    //   console.log("aLERT")
+    //   if (isSizeOptionPicked()) {
+    //     addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
+    //   } else {
+    //     addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
+    //   }
+    // }
 
-    // // Add event listeners to both color and size select boxes
-    colorSelect.addEventListener('click', updateAddToCartButtonState);
-    sizeSelect.addEventListener('click', function () {
-      updateAddToCartButtonState();
-    //  // Prevent the color select box from changing the button state
-      if (isSizeOptionPicked()) {
-        colorSelect.setAttribute('disabled', 'disabled');
-      } else {
-        colorSelect.removeAttribute('disabled');
-      }
-    });
+    // // // Add event listeners to both color and size select boxes
+    // colorSelect.addEventListener('click', updateAddToCartButtonState);
+    // sizeSelect.addEventListener('click', function () {
+    //   updateAddToCartButtonState();
+    // //  // Prevent the color select box from changing the button state
+    //   if (isSizeOptionPicked()) {
+    //     colorSelect.setAttribute('disabled', 'disabled');
+    //   } else {
+    //     colorSelect.removeAttribute('disabled');
+    //   }
+    // });
 
-    // Initial state on page load
-    updateAddToCartButtonState();
+    // // Initial state on page load
+    // updateAddToCartButtonState();
   });
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+  var colorSwatches = document.querySelectorAll('.color-swatch');
+  var addToCartButton = document.querySelector('#add-to-cart-button'); // Replace with the actual ID or class of your "Add to Cart" button
+
+  // Function to check if a color swatch with the value "unselected" is selected
+  function isUnselectedSwatchSelected() {
+    var selectedSwatch = document.querySelector('.color-swatch.selected');
+    return selectedSwatch && selectedSwatch.getAttribute('data-color') === 'unselected';
+  }
+
+  // Function to update the "Add to Cart" button state
+  function updateAddToCartButtonState() {
+    if (isUnselectedSwatchSelected()) {
+      addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
+    } else {
+      addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
+    }
+  }
+
+  // Add click event listeners to color swatches
+  colorSwatches.forEach(function (swatch) {
+    swatch.addEventListener('click', function () {
+      // Toggle the "selected" class on the clicked swatch
+      colorSwatches.forEach(function (otherSwatch) {
+        otherSwatch.classList.remove('selected');
+      });
+      this.classList.add('selected');
+      
+      updateAddToCartButtonState();
+    });
+  });
+
+  // Initial state on page load
+  updateAddToCartButtonState();
+});
+
 </script>
 {% schema %}
 {
