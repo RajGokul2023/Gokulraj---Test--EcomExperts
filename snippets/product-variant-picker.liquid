@@ -1,4 +1,100 @@
 {% comment %}
+  Renders product variant options
+
+  Accepts:
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+
+
+  Usage:
+  {% render 'product-variant-options',
+    product: product,
+    option: option,
+    block: block
+  %}
+{% endcomment %}
+
+{%- liquid
+  assign variants_available_arr = product.variants | map: 'available'
+  assign variants_option1_arr = product.variants | map: 'option1'
+  assign variants_option2_arr = product.variants | map: 'option2'
+  assign variants_option3_arr = product.variants | map: 'option3'
+
+  assign product_form_id = 'product-form-' | append: section.id
+   
+-%}
+
+{%- for value in option.values -%}
+  {%- liquid
+    assign option_disabled = true
+
+    for option1_name in variants_option1_arr
+      case option.position
+        when 1
+          if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+            assign option_disabled = false
+          endif
+        when 2
+          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+            assign option_disabled = false
+          endif
+        when 3
+          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+            assign option_disabled = false
+          endif
+      endcase
+    endfor
+  -%}
+
+  {%- if block.settings.picker_type == 'button' -%}
+    <!-- {% if option.name == 'Color' %} -->
+    <input
+      type="radio"
+      id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      name="{{ option.name }}"
+      value="{{ value | escape }}"
+      form="{{ product_form_id }}"
+      {% if option.selected_value == value %}
+        checked
+      {% endif %}
+      {% if option_disabled %}
+        class="disabled"
+      {% endif %}
+    >
+
+    <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+    </label>
+<!-- {% endif %} -->
+  {%- elsif block.settings.picker_type == 'dropdown' -%}
+    <option
+      value="{{ value | escape }}"
+      {% if option.selected_value == value %}
+        selected="selected"
+      {% endif %}
+    >
+      {% if option_disabled -%}
+        {{- 'products.product.value_unavailable' | t: option_value: value -}}
+      {%- else -%}
+        {{- value -}}
+      {%- endif %}
+    </option>
+  {%- endif -%}
+{%- endfor -%}
+
+
+
+
+
+
+
+
+
+pro-var-pic
+
+
+{% comment %}
   Renders product variant-picker
 
   Accepts:
@@ -9,8 +105,9 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-<div class="variant-pick">
-  {%- unless product.has_only_default_variant -%}
+{%- unless product.has_only_default_variant -%}
+  {%- if block.settings.picker_type == 'button' -%}
+
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -22,29 +119,9 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input option-type-is-{{ option.name }}">
+        <fieldset class="js product-form__input">
           <legend class="form__label {% if option.name == "Size" %}hidden{% endif %}">{{ option.name }}</legend>
-          {% comment %}{% render 'product-variant-options', product: product, option: option, block: block %} {% endcomment %}
-          {%- for value in option.values -%}
-            <input
-              type="radio"
-              id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-              name="{{ option.name }}"
-              value="{{ value | escape }}"
-              form="{{ product_form_id }}"
-              {% if option.forloop.index0 %}
-                checked
-              {% endif %}
-              {% if option_disabled %}
-                class="disabled"
-              {% endif %}
-            >
-
-          <label style="background-image: url({{ value | append: '.png' | file_url }}) !important; background-size: cover; background-position: center; width: 60px; height: 60px;" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
-          </label>
- 
-          {% endfor %}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
@@ -53,22 +130,57 @@
     </variant-radios>
   
     <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                  {%- for option in product.options_with_values -%}
+                    <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
+                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                        {{ option.name }}
+                      </label>
+                      <div class="select">
+                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          class="select__select"
+                          name="options[{{ option.name | escape }}]"
+                          form="{{ product_form_id }}"
+                        >
+                          {%- for value in option.values -%}
+                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                              {{ value }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </div>
+                  {%- endfor -%}
+
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                </variant-selects>
+
+  {%- else -%}
+    <variant-selects
+      id="variant-selects-{{ section.id }}"
+      class="no-js-hidden"
+      data-section="{{ section.id }}"
+      data-url="{{ product.url }}"
+      {% if update_url == false %}
+        data-update-url="false"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
       {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
+        <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
-            <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select Option-Type-{{ option.name }}"
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
             >
-              {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
-                  {{ value }}
-                </option>
-              {%- endfor -%}
+              {% render 'product-variant-options', product: product, option: option, block: block %}
             </select>
             {% render 'icon-caret' %}
           </div>
@@ -79,9 +191,9 @@
         {{ product.variants | json }}
       </script>
     </variant-selects>
-
+  {%- endif -%}
 {%- endunless -%}
-</div>
+
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
   <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
     <label class="form__label" for="Variants-{{ section.id }}">
@@ -94,7 +206,6 @@
         class="select__select"
         form="{{ product_form_id }}"
       >
-        
         {%- for variant in product.variants -%}
           <option
             {% if variant == product.selected_or_first_available_variant %}
@@ -135,45 +246,3 @@
     </div>
   </div>
 </noscript>
-
-<script>
-// document.addEventListener('DOMContentLoaded', function () {
-//   var sizeSelects = document.querySelectorAll('.Option-Type-Size');
-//   sizeSelects.forEach(function (sizeSelect) {
-//     sizeSelect.addEventListener('change', function () {
-//       var id = this.value;
-//       var parentVariantPick = this.closest('.variant-pick');
-//       var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
-
-//       sizeInputs.forEach(function (sizeInput) {
-//         if (sizeInput.value === id) {
-//           sizeInput.click();
-//         }
-//       });
-//     });
-//   });
-//   var colorSelects = document.querySelectorAll('.option-type-is-Color input');
-  // colorSelects.forEach(function (colorSelect) {
-  //   colorSelect.addEventListener('click', function () {
-  //     var id = this.value;
-  //     var parentVariantPick = this.closest('.variant-pick');
-  //     var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-  //     colorInputs.forEach(function (colorInput) {
-  //       if (colorInput.value === id) {
-  //         colorInput.setAttribute("selected", "selected");
-  //       } else {
-  //         colorInput.removeAttribute("selected");
-  //       }
-
-  //     });
-  //   });
-  // });
-  // if (performance.navigation.type === 1) {
-  //   const url = window.location;
-  //   const urlObj = new URL(url);
-  //   urlObj.search = '';
-  //   const result = urlObj.toString();
-  //   window.location.href = result;
-  // }
-});
-</script>
