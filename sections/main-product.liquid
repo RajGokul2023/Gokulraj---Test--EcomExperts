@@ -684,7 +684,7 @@ function checkSizeAndDisableButton() {
 // Event listener for color swatch clicks
 var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
 colorSwatches.forEach(function (colorSelect) {
-  colorSelect.addEventListener('change', function () {
+  colorSelect.addEventListener('click', function () {
     checkSizeAndDisableButton(); // Check the size and disable/enable the button
     addToCartButton.setAttribute('disabled', 'disabled');
   });
