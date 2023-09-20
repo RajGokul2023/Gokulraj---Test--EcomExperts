@@ -686,7 +686,7 @@ var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
 colorSwatches.forEach(function (colorSelect) {
   colorSelect.addEventListener('click', function () {
     checkSizeAndDisableButton(); // Check the size and disable the button
-    e.preventDefault();
+    colorSelect.preventDefault();
   });
 });
 
