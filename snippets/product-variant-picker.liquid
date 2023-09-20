@@ -177,6 +177,11 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(firstOption);
     firstOption.setAttribute("selected","selected");
   }
+
+   var selectedSize = document.querySelector(".Option-Type-Size");
+    if(selectedSize.value == "Unselected"){
+      addToCartButton.setAttribute('disabled', 'disabled');
+    }
   
 
   // if (performance.navigation.type === 1) {
