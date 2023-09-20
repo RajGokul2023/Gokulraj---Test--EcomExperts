@@ -667,7 +667,20 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
+    var variantSelect = document.querySelector('#product-select'); // Replace with the actual ID of your select box
+    var addToCartButton = document.querySelector('#add-to-cart-button'); // Replace with the actual ID or class of your "Add to Cart" button
 
+    // Add an event listener to the select box
+    variantSelect.addEventListener('change', function () {
+      var selectedOption = variantSelect.value; // Get the selected option value
+      
+      // Check if the selected option matches the one you want to disable
+      if (selectedOption === 'option-to-disable') {
+        addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
+      } else {
+        addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
+      }
+    });
   });
 </script>
 {% schema %}
