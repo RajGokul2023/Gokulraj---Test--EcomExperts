@@ -667,7 +667,7 @@
     if (addToCartButton) {
       addToCartButton.setAttribute('disabled', 'disabled');
     }
-    var colorSelect = document.querySelectorAll('.option-type-is-Color > input'); // Replace with the actual ID of your color select box
+    var colorSelect = document.querySelector('.option-type-is-Color input'); // Replace with the actual ID of your color select box
     var sizeSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your size select box
     var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
 
@@ -691,9 +691,9 @@
 
     // // Add event listeners to both color and size select boxes
     colorSelect.addEventListener('click', updateAddToCartButtonState);
-    sizeSelect.addEventListener('click', function () {
-      updateAddToCartButtonState();
-    // // Prevent the color select box from changing the button state
+    // sizeSelect.addEventListener('click', function () {
+    //   updateAddToCartButtonState();
+    //  // Prevent the color select box from changing the button state
       if (isSizeOptionPicked()) {
         colorSelect.setAttribute('disabled', 'disabled');
       } else {
