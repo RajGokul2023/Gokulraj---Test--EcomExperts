@@ -668,8 +668,7 @@
       addToCartButton.setAttribute('disabled', 'disabled');
     }
     var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
-    var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
-
+    var addToCartButton = this.closest('.product-form__submit');
     // Add an event listener to the select box
     variantSelect.addEventListener('change', function () {
       var selectedOption = variantSelect.value; // Get the selected option value
