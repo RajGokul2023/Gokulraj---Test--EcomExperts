@@ -173,9 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Set the first variant option as selected on page load
   var firstOption = variantSelect.querySelector('#template--20987302936850__main--0');
   if (firstOption) {
-    firstOption.setAttribute("selected", "selected");
-  } else {
-    firstOption.removeAttribute("selected", "selected");
+    firstOption.selected = true;
   }
   if (performance.navigation.type === 1) {
     const url = window.location;
