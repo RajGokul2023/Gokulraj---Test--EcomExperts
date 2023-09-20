@@ -175,6 +175,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (firstOption) {
     firstOption.selected = true;
   }
+  var variantSelect = document.querySelector('#product-select'); // Replace with the actual ID of your select box
+  var addToCartButton = document.querySelector('#add-to-cart'); // Replace with the actual ID or class of your "Add to Cart" button
+  
+
+  // Check the stock status of the first variant option on page load
+  var firstOption = variantSelect.querySelector('option');
+  if (firstOption && firstOption.value === 'out-of-stock-value') { // Replace 'out-of-stock-value' with the actual value that indicates an out-of-stock variant
+    addToCartButton.setAttribute('disabled', 'disabled');
+
+  }
   if (performance.navigation.type === 1) {
     const url = window.location;
     const urlObj = new URL(url);
