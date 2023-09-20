@@ -184,9 +184,9 @@ document.addEventListener('DOMContentLoaded', function () {
     colorSelect.addEventListener('click', function(){
     var selectedSize = document.querySelector(".Option-Type-Size option");
      var addToCartButton = document.querySelector('.product-form__submit');
-      var selectedSize = $(this).val();
-      console.log(selectedSize);
-      if(selectedSize.value == "Unselected"){
+      var selectSize = selectedSize.value;
+      console.log(selectSize);
+      if(selectedSize == "Unselected"){
         
         addToCartButton.setAttribute('disabled', 'disabled');
         console.log(addToCartButton);
