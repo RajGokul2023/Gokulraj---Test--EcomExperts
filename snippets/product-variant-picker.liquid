@@ -137,22 +137,22 @@
 </noscript>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var sizeSelects = document.querySelectorAll('.Option-Type-Size');
-  sizeSelects.forEach(function (sizeSelect) {
-    sizeSelect.addEventListener('change', function () {
-      var id = this.value;
-      var parentVariantPick = this.closest('.variant-pick');
-      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
+// document.addEventListener('DOMContentLoaded', function () {
+//   var sizeSelects = document.querySelectorAll('.Option-Type-Size');
+//   sizeSelects.forEach(function (sizeSelect) {
+//     sizeSelect.addEventListener('change', function () {
+//       var id = this.value;
+//       var parentVariantPick = this.closest('.variant-pick');
+//       var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
 
-      sizeInputs.forEach(function (sizeInput) {
-        if (sizeInput.value === id) {
-          sizeInput.click();
-        }
-      });
-    });
-  });
-  var colorSelects = document.querySelectorAll('.option-type-is-Color input');
+//       sizeInputs.forEach(function (sizeInput) {
+//         if (sizeInput.value === id) {
+//           sizeInput.click();
+//         }
+//       });
+//     });
+//   });
+//   var colorSelects = document.querySelectorAll('.option-type-is-Color input');
   // colorSelects.forEach(function (colorSelect) {
   //   colorSelect.addEventListener('click', function () {
   //     var id = this.value;
