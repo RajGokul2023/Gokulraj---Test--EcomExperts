@@ -185,8 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(addToCartButton);
     }
   var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
-  if (colorSwatches , 'click', function(){
-    console.log("alert");
+  colorSwatches.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function(){
+      console.log("alert");
+    });
   });
   
 
