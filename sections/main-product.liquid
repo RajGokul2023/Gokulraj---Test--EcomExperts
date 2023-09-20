@@ -706,42 +706,6 @@
   });
 
 
-  document.addEventListener('DOMContentLoaded', function () {
-  var colorSwatches = document.querySelectorAll('.Option-Type-Size option');
-  var addToCartButton = document.querySelector('.product-form__submit'); // Replace with the actual ID or class of your "Add to Cart" button
-
-  // Function to check if a color swatch with the value "unselected" is selected
-  function isUnselectedSwatchSelected() {
-    var selectedSwatch = document.querySelector('.Option-Type-Size option');
-    return selectedSwatch && selectedSwatch.getAttribute('value') === 'unselected';
-  }
-
-  // Function to update the "Add to Cart" button state
-  function updateAddToCartButtonState() {
-    if (isUnselectedSwatchSelected()) {
-      addToCartButton.setAttribute('disabled', 'disabled'); // Disable the "Add to Cart" button
-    } else {
-      addToCartButton.removeAttribute('disabled'); // Enable the "Add to Cart" button
-    }
-  }
-
-  // Add click event listeners to color swatches
-  colorSwatches.forEach(function (swatch) {
-    swatch.addEventListener('click', function () {
-      // Toggle the "selected" class on the clicked swatch
-      colorSwatches.forEach(function (otherSwatch) {
-        otherSwatch.classList.remove('selected');
-      });
-      this.classList.add('selected');
-      
-      updateAddToCartButtonState();
-    });
-  });
-
-  // Initial state on page load
-  updateAddToCartButtonState();
-});
-
 </script>
 {% schema %}
 {
