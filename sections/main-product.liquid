@@ -659,6 +659,27 @@
 {%- if product.tags contains 'Giftproduct' -%}
   <script>window.location.href="/"</script>
 {%- endif %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var variantSelect = document.querySelector('#product-select'); // Replace with the actual ID of your select box
+
+    variantSelect.addEventListener('change', function () {
+      // Your existing code to update the selected variant
+
+      // Disable out-of-stock size options
+      var sizeOptions = variantSelect.querySelectorAll('option');
+      sizeOptions.forEach(function (option) {
+        if (option.value !== '' && !option.disabled) {
+          // Check if the option is out of stock and not already disabled
+          // Replace 'out-of-stock-value' with the actual value that indicates an out-of-stock variant
+          if (option.value === 'out-of-stock-value') {
+            option.disabled = true;
+          }
+        }
+      });
+    });
+  });
+</script>
 {% schema %}
 {
   "name": "t:sections.main-product.name",
