@@ -168,6 +168,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+  var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
+
+  // Set the first variant option as selected on page load
+  var firstOption = variantSelect.querySelector('option');
+  if (firstOption) {
+    firstOption.selected = true;
+  }
   if (performance.navigation.type === 1) {
     const url = window.location;
     const urlObj = new URL(url);
