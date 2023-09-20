@@ -168,19 +168,19 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
-  var addToCartButton = document.querySelector('#add-to-cart-button'); // Replace with the actual ID of your "Add to Cart" button
+  // var variantSelect = document.querySelector('.Option-Type-Size'); // Replace with the actual ID of your select box
+  // var addToCartButton = document.querySelector('#add-to-cart-button'); // Replace with the actual ID of your "Add to Cart" button
 
-  variantSelect.addEventListener('change', function () {
-    var selectedVariant = variantSelect.value;
-    var isVariantOutOfStock = selectedVariant === 'unavailable'; // Adjust based on your variant availability logic
+  // variantSelect.addEventListener('change', function () {
+  //   var selectedVariant = variantSelect.value;
+  //   var isVariantOutOfStock = selectedVariant === 'unavailable'; // Adjust based on your variant availability logic
 
-    if (isVariantOutOfStock) {
-      addToCartButton.setAttribute('disabled', 'disabled');
-    } else {
-      addToCartButton.removeAttribute('disabled');
-    }
-  });
+  //   if (isVariantOutOfStock) {
+  //     addToCartButton.setAttribute('disabled', 'disabled');
+  //   } else {
+  //     addToCartButton.removeAttribute('disabled');
+  //   }
+  // });
   if (performance.navigation.type === 1) {
     const url = window.location;
     const urlObj = new URL(url);
