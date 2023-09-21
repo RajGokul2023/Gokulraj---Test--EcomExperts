@@ -176,6 +176,9 @@ document.addEventListener('DOMContentLoaded', function () {
     firstOption.selected = true;
     console.log(firstOption);
     firstOption.setAttribute("selected","selected");
+  } else {
+    firstOption.removeAttribute("selected", "selected");
+  }
   }
   
 
