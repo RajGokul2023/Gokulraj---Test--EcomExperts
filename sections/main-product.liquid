@@ -675,7 +675,7 @@ function checkSizeAndDisableButton() {
   var selectedSize = document.querySelector(".Option-Type-Size option");
   var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
   var selectSize = selectedSize.value;
-
+console.log(selectSize);
   if (selectSize === "Unselected") {
     addToCartButton.setAttribute('disabled', 'disabled');
   } else {
