@@ -170,22 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  var selectSizes = document.querySelectorAll('.option-type-is-Size input');
-  selectSizes.forEach(function (selectSize) {
-    selectSize.addEventListener('click', function () {
-      var id = this.value;
-      var parentVariantPick = this.closest('.variant-pick');
-      var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Size option');
-      sizeInputs.forEach(function (sizeInput) {
-        if (sizeInput.value === id) {
-          sizeInput.setAttribute("selected", "selected");
-        } else {
-          sizeInput.removeAttribute("selected");
-        }
-
-      });
-    });
-  });  
 
 });
 </script>
