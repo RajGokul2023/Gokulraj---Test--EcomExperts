@@ -704,7 +704,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   checkSizeAndDisableButton();
-
+  window.addEventListener('popstate', function(event) {
+    // Get a reference to the element you want to enable
+    var elementToEnable = document.getElementsByClassName('.product-form__submit');
+    
+    // Remove the 'disabled' attribute to enable the element
+    elementToEnable.removeAttribute('disabled');
+  });
 });
 </script>
 {% schema %}
