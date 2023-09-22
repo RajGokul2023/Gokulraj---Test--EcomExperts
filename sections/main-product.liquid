@@ -706,33 +706,6 @@ document.addEventListener('DOMContentLoaded', function () {
   checkSizeAndDisableButton();
 
 });
-// document.addEventListener('DOMContentLoaded', function () {
-//   function checkSizeAndDisableButton() {
-//     var selectedSize = document.querySelector(".Option-Type-Size option:checked");
-//     var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
-//     var selectSize = selectedSize.value;
-//     console.log(selectSize);
-//     if (selectSize === "Unselected") {
-//       addToCartButton.setAttribute('disabled', 'disabled');
-//     } else {
-//       addToCartButton.removeAttribute('disabled');
-//     }
-//   }
-
-//   var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
-//   colorSwatches.forEach(function (colorSelect) {
-//     colorSelect.addEventListener('click', function () {
-//       checkSizeAndDisableButton();
-//     });
-//   });
-
-//   var sizeSelect = document.querySelector(".Option-Type-Size");
-//   sizeSelect.addEventListener('change', function () {
-//     checkSizeAndDisableButton();
-//   });
-
-//   checkSizeAndDisableButton();
-// });  
 </script>
 {% schema %}
 {
