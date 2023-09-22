@@ -660,52 +660,52 @@
   <script>window.location.href="/"</script>
 {%- endif %}
 <script>
-// document.addEventListener('DOMContentLoaded', function () {
-//     var singleClick = null; 
-//     var doubleClickTimeout = 800; 
+document.addEventListener('DOMContentLoaded', function () {
+    var singleClick = null; 
+    var doubleClickTimeout = 800; 
 
-//   function checkSizeAndDisableButton() {
-//     var selectedSize = document.querySelector(".Option-Type-Size option");
-//     var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
-//     var selectSize = selectedSize.value;
-//   console.log(selectSize);
-//     if (selectSize === "Unselected") {
-//       addToCartButton.setAttribute('disabled', 'disabled');
-//     } else {
-//       addToCartButton.removeAttribute('disabled', 'disabled');
-//     }
-//   }
+  function checkSizeAndDisableButton() {
+    var selectedSize = document.querySelector(".Option-Type-Size option");
+    var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+    var selectSize = selectedSize.value;
+  console.log(selectSize);
+    if (selectSize === "Unselected") {
+      addToCartButton.setAttribute('disabled', 'disabled');
+    } else {
+      addToCartButton.removeAttribute('disabled', 'disabled');
+    }
+  }
 
-//   var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
-//   colorSwatches.forEach(function (colorSelect) {
-//     colorSelect.addEventListener('click', function () {
-//       if (singleClick === null) {
+  var colorSwatches = document.querySelectorAll('.option-type-is-Color input');
+  colorSwatches.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function () {
+      if (singleClick === null) {
         
-//         singleClick = new Date().getTime();
+        singleClick = new Date().getTime();
   
         
-//         setTimeout(function () {
-//           singleClick = null;
-//           checkSizeAndDisableButton();
+        setTimeout(function () {
+          singleClick = null;
+          checkSizeAndDisableButton();
   
-//         }, doubleClickTimeout); 
-//       } else {
+        }, doubleClickTimeout); 
+      } else {
         
-//         singleClick = null;
-//         checkSizeAndDisableButton(); 
+        singleClick = null;
+        checkSizeAndDisableButton(); 
   
-//       }
-//     });
-//   });
+      }
+    });
+  });
 
-//   var sizeSelect = document.querySelector(".Option-Type-Size");
-//   sizeSelect.addEventListener('change', function () {
-//     checkSizeAndDisableButton(); 
-//   });
+  var sizeSelect = document.querySelector(".Option-Type-Size");
+  sizeSelect.addEventListener('change', function () {
+    checkSizeAndDisableButton(); 
+  });
 
-//   checkSizeAndDisableButton();
+  checkSizeAndDisableButton();
 
-// });
+});
 document.addEventListener('DOMContentLoaded', function () {
   function checkSizeAndDisableButton() {
     var selectedSize = document.querySelector(".Option-Type-Size option:checked");
@@ -732,7 +732,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   checkSizeAndDisableButton();
-});  
+// });  
 </script>
 {% schema %}
 {
