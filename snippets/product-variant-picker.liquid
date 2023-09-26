@@ -72,7 +72,11 @@
             >
               {%- for value in option.values -%}
                 <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.selected == value %}selected="selected"{% endif %}>
-                  {{ value }}
+                  {% if option_disabled -%}
+                    {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                  {%- else -%}
+                    {{- value -}}
+                  {%- endif %}
                 </option>
               {%- endfor -%}
             </select>
