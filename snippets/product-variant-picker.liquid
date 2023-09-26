@@ -164,9 +164,10 @@ document.addEventListener('DOMContentLoaded', function () {
   sizeSelects.forEach(function (sizeSelect) {
     sizeSelect.addEventListener('change', function () {
       var id = this.value;
+      console.log(id);
       var parentVariantPick = this.closest('.variant-pick');
       var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Color input');
-
+      console.log(sizeInputs);
       sizeInputs.forEach(function (sizeInput) {
         if (sizeInput.value === id) {
           sizeInput.click();
