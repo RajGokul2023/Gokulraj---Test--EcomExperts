@@ -159,37 +159,22 @@
   </div>
 </noscript>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-  var colorSelects = document.querySelectorAll('.Option-Type-Color');
-  colorSelects.forEach(function (colorSelect) {
-    colorSelect.addEventListener('change', function () {
+document.addEventListener('DOMContentLoaded', function () {
+  var sizeSelects = document.querySelectorAll('.Option-Type-Size');
+
+  sizeSelects.forEach(function (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
       var id = this.value;
       var parentVariantPick = this.closest('.variant-pick');
-      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-color input');
+      var sizeInputs = parentVariantPick.querySelectorAll('.option-type-is-Size input');
 
-      colorInputs.forEach(function (colorInput) {
-        if (colorInput.value === id) {
-          colorInput.click();
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.click();
         }
-      });
-    });
-  });
-  var colorSelects = document.querySelectorAll('.option-type-is-Color input');
-  colorSelects.forEach(function (colorSelect) {
-    colorSelect.addEventListener('click', function () {
-      var id = this.value;
-      console.log(id);
-      var parentVariantPick = this.closest('.variant-pick');
-      var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
-      colorInputs.forEach(function (colorInput) {
-        if (colorInput.value === id) {
-          colorInput.setAttribute("selected", "selected");
-        } else {
-          colorInput.removeAttribute("selected");
-        }
-
       });
     });
   });
 });
+
 </script>
