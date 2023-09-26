@@ -3512,9 +3512,9 @@ details-disclosure > details {
   }
 }
 
-/* variant-radios fieldset:nth-child(2) {
+variant-radios fieldset:nth-child(2) {
     display: none;
-} */
+}
 
 /* .collection-page .grid__item#Soft-Winter-Jacket {
     display: none;
