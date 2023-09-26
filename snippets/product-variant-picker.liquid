@@ -33,7 +33,7 @@
               value="{{ value | escape }}"
               form="{{ product_form_id }}"
               {% if option.name == "Color" %}
-              {% if option.first == value %}
+              {% if option.first %}
                 checked
               {% endif %}
               {% endif %}
@@ -67,7 +67,7 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.first == value %}selected="selected"{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.first %}selected="selected"{% endif %}>
                   {{ value }}
                 </option>
               {%- endfor -%}
