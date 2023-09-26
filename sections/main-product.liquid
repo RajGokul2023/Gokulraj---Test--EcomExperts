@@ -661,16 +661,16 @@
 {%- endif %}
 <script>
 // // // Wait for the DOM to be fully loaded
-//  function button() {
-// //   var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit'); // Replace with the actual button selector
+ function button() {
+  var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit'); // Replace with the actual button selector
   
-// //   if (addToCartButton) {
-// //     addToCartButton.setAttribute('disabled', 'disabled');
-// //   }
-// //   else
-// //   {
-// //     addToCartButton.removeAttribute('disabled', 'disabled');
-// //   }
+  if (addToCartButton) {
+    addToCartButton.setAttribute('disabled', 'disabled');
+  }
+  else
+  {
+    addToCartButton.removeAttribute('disabled', 'disabled');
+  }
 //   var selectedSize = document.querySelector(".Option-Type-Size option");
 //     var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
 //     var selectSize = selectedSize.value;
@@ -680,8 +680,8 @@
 //     } else {
 //       addToCartButton.removeAttribute('disabled', 'disabled');
 //     }
-//  }
-// button();
+ }
+button();
 
 
 
