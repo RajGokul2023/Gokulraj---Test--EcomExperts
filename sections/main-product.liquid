@@ -660,34 +660,15 @@
   <script>window.location.href="/"</script>
 {%- endif %}
 <script>
-  // Example JavaScript code for handling option changes
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-  // Replace '.Option-Type-Size' with the actual selector for your select box
-  var selectBox = document.querySelector('.Option-Type-Size');
-  // Replace '.product-form__buttons .product-form__submit' with the actual selector for your "Add to Cart" button
-  var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
-
-  // Function to check the selected option and disable the button
-  function checkOptionAndDisableButton() {
-    var selectedOption = selectBox.value;
-    
-    // Replace 'YourOptionValueToDisableButton' with the option value that should disable the button
-    if (selectedOption === 'YourOptionValueToDisableButton') {
-      addToCartButton.setAttribute('disabled', 'disabled');
-    } else {
-      addToCartButton.removeAttribute('disabled');
-    }
+  var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit'); // Replace with the actual button selector
+  
+  if (addToCartButton) {
+    addToCartButton.setAttribute('disabled', 'disabled');
   }
-
-  // Listen for changes in the select box
-  selectBox.addEventListener('change', function () {
-    checkOptionAndDisableButton();
-  });
-
-  // Initialize the button state when the page loads
-  checkOptionAndDisableButton();
 });
+
 
 
 </script>
