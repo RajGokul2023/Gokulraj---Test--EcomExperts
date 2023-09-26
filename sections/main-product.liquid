@@ -663,7 +663,10 @@
 // // // Wait for the DOM to be fully loaded
  function button() {
   var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit'); // Replace with the actual button selector
-  
+      var selectedSize = document.querySelector(".Option-Type-Size option");
+    var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+    var selectSize = selectedSize.value;
+  console.log(selectSize);
   if (addToCartButton) {
     addToCartButton.setAttribute('disabled', 'disabled');
   }
