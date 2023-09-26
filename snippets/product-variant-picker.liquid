@@ -175,10 +175,10 @@
     });
   });
   var colorSelects = document.querySelectorAll('.option-type-is-Color input');
-    console.log(colorSelects);
   colorSelects.forEach(function (colorSelect) {
     colorSelect.addEventListener('click', function () {
       var id = this.value;
+      console.log(id);
       var parentVariantPick = this.closest('.variant-pick');
       var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
       colorInputs.forEach(function (colorInput) {
