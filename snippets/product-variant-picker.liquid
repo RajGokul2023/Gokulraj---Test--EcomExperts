@@ -36,10 +36,6 @@
               {% if option.selected_value == value %}
                 checked
               {% endif %}
-              {% elsif option.name == "Size" %}
-              {% if forloop.first %}
-                checked
-              {% endif %}
               {% endif %}
               {% if option_disabled %}
                 class="disabled"
@@ -71,7 +67,7 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if forloop.first %}checked{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}">
                   {{ value }}
                 </option>
               {%- endfor -%}
@@ -174,6 +170,22 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+  var selectSizes = document.querySelectorAll('.option-type-is-Size input');
+  selectSizes.forEach(function (selectSize) {
+    selectSize.addEventListener('click', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizeInputs = parentVariantPick.querySelectorAll('.Option-Type-Size option');
+      sizeInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          sizeInput.setAttribute("selected", "selected");
+        } else {
+          sizeInput.removeAttribute("selected");
+        }
+
+      });
+    });
+  });  
 
 });
 </script>
