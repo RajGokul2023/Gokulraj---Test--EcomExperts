@@ -659,6 +659,44 @@
 {%- if product.tags contains 'Giftproduct' -%}
   <script>window.location.href="/"</script>
 {%- endif %}
+<script>
+  // Example JavaScript code for handling option changes
+document.addEventListener('DOMContentLoaded', function () {
+  var selectSize = document.querySelector(".Option-Type-Size");
+  var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+
+  selectSize.addEventListener('change', function () {
+    var selectedVariant = getSelectedVariant();
+
+    if (selectedVariant) {
+      if (selectedVariant.available) {
+        // Variant is available, enable the Add to Cart button
+        addToCartButton.removeAttribute('disabled');
+      } else {
+        // Variant is sold out, disable the Add to Cart button
+        addToCartButton.setAttribute('disabled', 'disabled');
+      }
+    }
+  });
+
+  function getSelectedVariant() {
+    var selectedSize = selectSize.value;
+    var variants = {{ product.variants | json }};
+
+    for (var i = 0; i < variants.length; i++) {
+      if (variants[i].option1 === selectedSize) {
+        return variants[i];
+      }
+    }
+
+    return null;
+  }
+
+  // Initial check when the page loads
+  selectSize.dispatchEvent(new Event('change'));
+});
+
+</script>
 <!-- <script>
 document.addEventListener('DOMContentLoaded', function () {
     var singleClick = null; 
