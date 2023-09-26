@@ -36,6 +36,10 @@
               {% if option.selected_value == value %}
                 checked
               {% endif %}
+              {% elsif option.name == "Size" %}
+              {% if forloop.first %}
+                checked
+              {% endif %}
               {% endif %}
               {% if option_disabled %}
                 class="disabled"
@@ -67,7 +71,7 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if forloop.first %}checked{% endif %}>
                   {{ value }}
                 </option>
               {%- endfor -%}
@@ -169,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       });
     });
-  }); 
+  });
 
 });
 </script>
