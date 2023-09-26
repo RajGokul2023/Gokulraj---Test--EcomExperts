@@ -33,7 +33,7 @@
               value="{{ value | escape }}"
               form="{{ product_form_id }}"
               {% if option.name == "Color" %}
-              {% if option.selected_value == value %}
+              {% if option.first == value %}
                 checked
               {% endif %}
               {% endif %}
