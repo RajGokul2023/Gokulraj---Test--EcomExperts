@@ -170,6 +170,22 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+  var sizesSelects = document.querySelectorAll('.option-type-is-Size option');
+  sizesSelects.forEach(function (sizesSelect) {
+    sizeSelect.addEventListener('click', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var sizesInputs = parentVariantPick.querySelectorAll('.Option-Type-Size option');
+      sizesInputs.forEach(function (sizeInput) {
+        if (sizeInput.value === id) {
+          colorInput.setAttribute("selected", "selected");
+        } else {
+          sizeInput.removeAttribute("selected");
+        }
+
+      });
+    });
+  });  
 
 });
 </script>
