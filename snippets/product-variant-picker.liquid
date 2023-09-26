@@ -158,3 +158,37 @@
     </div>
   </div>
 </noscript>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var colorSelects = document.querySelectorAll('.Option-Type-Color');
+  colorSelects.forEach(function (colorSelect) {
+    colorSelect.addEventListener('change', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var colorInputs = parentVariantPick.querySelectorAll('.option-type-is-color input');
+
+      colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.click();
+        }
+      });
+    });
+  });
+  var colorSelects = document.querySelectorAll('.option-type-is-Color input');
+  colorSelects.forEach(function (colorSelect) {
+    colorSelect.addEventListener('click', function () {
+      var id = this.value;
+      var parentVariantPick = this.closest('.variant-pick');
+      var colorInputs = parentVariantPick.querySelectorAll('.Option-Type-Color option');
+      colorInputs.forEach(function (colorInput) {
+        if (colorInput.value === id) {
+          colorInput.setAttribute("selected", "selected");
+        } else {
+          colorInput.removeAttribute("selected");
+        }
+
+      });
+    });
+  });
+});
+</script>
