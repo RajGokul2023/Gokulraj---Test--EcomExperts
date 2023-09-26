@@ -71,7 +71,7 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if forloop.first %}checked{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.selected == value %}selected="selected"{% endif %}>
                   {{ value }}
                 </option>
               {%- endfor -%}
