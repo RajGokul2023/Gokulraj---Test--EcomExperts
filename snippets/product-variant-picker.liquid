@@ -58,23 +58,29 @@
       </script>
     </variant-radios>
   
-    <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+<variant-selects
+      id="variant-selects-{{ section.id }}"
+      class="no-js-hidden"
+      data-section="{{ section.id }}"
+      data-url="{{ product.url }}"
+      {% if update_url == false %}
+        data-update-url="false"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
       {%- for option in product.options_with_values -%}
-        <div class="product-form__input product-form__input--dropdown {% if option.name == 'Color' %}hidden{% endif %}">
+        <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
-            <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select Option-Type-{{ option.name }}"
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
             >
-              {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.selected == value %}selected="selected"{% endif %}>
-                  {{ value }}
-                </option>
-              {%- endfor -%}
+              {% render 'product-variant-options', product: product, option: option, block: block %}
             </select>
             {% render 'icon-caret' %}
           </div>
