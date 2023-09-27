@@ -660,7 +660,7 @@
   <script>window.location.href="/"</script>
 {%- endif %}
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+{% comment %} document.addEventListener('DOMContentLoaded', function () {
     var singleClick = null; 
     var doubleClickTimeout = 800; 
 
@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   checkSizeAndDisableButton();
 
-});
+}); {% endcomment %}
 </script>
 {% schema %}
 {
