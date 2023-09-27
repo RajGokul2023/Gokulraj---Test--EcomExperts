@@ -172,5 +172,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var selectedSize = document.querySelector(".Option-Type-Size option");
     var selectSize = selectedSize.value;
   console.log(selectSize);
+  document.addEventListener('DOMContentLoaded', function () {
+  // Find the size variant select element by its selector
+  var sizeSelect = document.querySelector('.Option-Type-Size');
+
+  // Check if the size select box exists
+  if (sizeSelect) {
+    // Set the select box to an "unselected" state (usually the first option)
+    sizeSelect.selectedIndex = 0;
+  }
+});
 });
 </script>
