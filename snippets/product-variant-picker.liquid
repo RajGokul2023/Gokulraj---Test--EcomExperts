@@ -32,8 +32,10 @@
               name="{{ option.name }}"
               value="{{ value | escape }}"
               form="{{ product_form_id }}"
+              {% if option.name == "Color" %}
               {% if option.selected_value == value %}
                 checked
+              {% endif %}
               {% endif %}
               {% if option_disabled %}
                 class="disabled"
@@ -65,7 +67,7 @@
               form="{{ product_form_id }}"
             >
               {%- for value in option.values -%}
-                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}" {% if option.forloop.index0 %}selected="selected"{% endif %}>
+                <option id="{{ section.id }}-{{ object.position }}-{{ forloop.index0 }}" value="{{ value | escape }}">
                   {{ value }}
                 </option>
               {%- endfor -%}
@@ -168,5 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
 });
 </script>
