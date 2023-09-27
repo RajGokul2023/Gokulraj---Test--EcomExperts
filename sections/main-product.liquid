@@ -705,6 +705,15 @@
 
 //   checkSizeAndDisableButton();
 // });
+document.addEventListener('DOMContentLoaded', function() {
+  // Find the "Add to Cart" button element by its selector
+  var addToCartButton = document.querySelector('.product-form__buttons .product-form__submit');
+
+  // Disable the button on page load
+  if (addToCartButton) {
+    addToCartButton.setAttribute('disabled', 'disabled');
+  }
+});  
 </script>
 {% schema %}
 {
